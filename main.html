@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise Wait Example</title>
+    <!-- Link to external CSS file -->
     <link rel="stylesheet" href="styles.css" />
+    
+    <!-- Bootstrap CSS for styling -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -12,18 +17,25 @@
   </head>
 
   <body>
-    <!-- the entire body must be written by student -->
-    <table class="table table-striped table-hover table-bordered">
-      <thead>
-        <tr>
-          <th>Promise Name</th>
-          <th>Time taken (s)</th>
-        </tr>
-      </thead>
-      <tbody id="output"></tbody>
-    </table>
+    <div class="container mt-5">
+      <!-- Table for displaying results -->
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Promise Name</th>
+            <th>Time taken (s)</th>
+          </tr>
+        </thead>
+        <tbody id="output">
+          <!-- Rows will be added dynamically by JS -->
+        </tbody>
+      </table>
+    </div>
 
-    <script type="text/javascript" src="./script.js"></script>
+    <!-- Link to the JS script -->
+    <script type="text/javascript" src="script.js"></script>
+    
+    <!-- Bootstrap JS for additional functionality -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"

@@ -3,11 +3,23 @@
 // Function to create a random promise that resolves after a random delay
 function createRandomPromise(promiseName) {
   const randomTime = Math.random() * 2 + 1; // Random time between 1 and 3 seconds
-  return new Promise(resolve => {
+  
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(randomTime);
+      const error = Math.random() < 0.1; // Simulate an error 10% of the time (adjust as needed)
+      
+      if (error) {
+        reject(`Error occurred in ${promiseName}`); // Reject the promise with an error message
+      } else {
+        resolve(randomTime); // Resolve the promise with the time taken
+      }
     }, randomTime * 1000); // Convert time to milliseconds
-  }).then(time => ({ promiseName, time: time.toFixed(3) }));
+  }).then(time => {
+    return { promiseName, time: time.toFixed(3) }; // If resolved, return the time in 3 decimal places
+  }).catch(error => {
+    console.error(error); // Log the error message to the console
+    return { promiseName, time: 'Error' }; // Return 'Error' if the promise was rejected
+  });
 }
 
 // Create the three promises
@@ -46,7 +58,7 @@ Promise.all([promise1, promise2, promise3])
     });
 
     // Add total time row
-    const totalTime = results.reduce((total, result) => total + parseFloat(result.time), 0).toFixed(3);
+    const totalTime = results.reduce((total, result) => total + (result.time === 'Error' ? 0 : parseFloat(result.time)), 0).toFixed(3);
     const totalRow = document.createElement('tr');
     const totalLabelCell = document.createElement('td');
     const totalTimeCell = document.createElement('td');
@@ -59,5 +71,5 @@ Promise.all([promise1, promise2, promise3])
     outputTable.appendChild(totalRow);
   })
   .catch(error => {
-    console.error('Error occurred:', error);
+    console.error('Error handling promises:', error);
   });

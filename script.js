@@ -1,4 +1,3 @@
-//your JS code here. If required.
 // script.js
 
 // Function to create a random promise that resolves after a random delay
@@ -18,8 +17,8 @@ const promise3 = createRandomPromise('Promise 3');
 
 // Display "Loading..." message before promises resolve
 document.getElementById('output').innerHTML = `
-  <tr>
-    <td colspan="2" id="loading">Loading...</td>
+  <tr id="loading">
+    <td colspan="2">Loading...</td>
   </tr>
 `;
 
@@ -30,7 +29,7 @@ Promise.all([promise1, promise2, promise3])
     const outputTable = document.getElementById('output');
 
     // Remove the "Loading..." row (if it exists) from the table body
-    outputTable.innerHTML = '';
+    outputTable.innerHTML = ''; // This clears the "Loading..." row
 
     // Populate the table with results from each promise
     results.forEach(result => {
@@ -46,10 +45,8 @@ Promise.all([promise1, promise2, promise3])
       outputTable.appendChild(row);
     });
 
-    // Calculate total time to resolve all promises
+    // Add total time row
     const totalTime = results.reduce((total, result) => total + parseFloat(result.time), 0).toFixed(3);
-    
-    // Add the total row to the table
     const totalRow = document.createElement('tr');
     const totalLabelCell = document.createElement('td');
     const totalTimeCell = document.createElement('td');
